@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Reflex: Reaction Time &amp; Sequence Memory Tester</title>
+<meta name="description" content="Test your reaction time and sequence memory. A standalone piece of the SkillForge skill-testing platform.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="wrap">
+
+  <header class="site-header">
+    <div class="brand">
+      <span class="brand-mark" aria-hidden="true">⚡</span>
+      <span class="brand-name">Reflex</span>
+    </div>
+    <p class="tagline">Reaction time and sequence memory, measured precisely. A standalone piece of the <a href="#" id="skillforgeLink">SkillForge</a> skill-testing platform.</p>
+  </header>
+
+  <!-- ============== MODE SELECT ============== -->
+  <main class="panel" id="modeSelect">
+    <div class="mode-grid">
+      <button class="mode-card" id="pickReaction" type="button">
+        <span class="mode-icon" aria-hidden="true">◉</span>
+        <span class="mode-title">Reaction Time</span>
+        <span class="mode-desc">Click the instant it turns green. 5 rounds, average and best recorded.</span>
+        <span class="mode-best" id="reactionBest">Best: —</span>
+      </button>
+      <button class="mode-card" id="pickSequence" type="button">
+        <span class="mode-icon" aria-hidden="true">▦</span>
+        <span class="mode-title">Sequence Memory</span>
+        <span class="mode-desc">Watch the pattern, then repeat it. Gets one step longer each round.</span>
+        <span class="mode-best" id="sequenceBest">Best: —</span>
+      </button>
+    </div>
+  </main>
+
+  <!-- ============== REACTION TIME GAME ============== -->
+  <main class="panel" id="reactionGame" hidden>
+    <button class="back-btn" id="reactionBack" type="button">← Back</button>
+    <div class="reaction-stage" id="reactionStage" tabindex="0">
+      <span class="reaction-message" id="reactionMessage">Click to start</span>
+    </div>
+    <div class="round-dots" id="reactionRoundDots"></div>
+    <div class="reaction-results" id="reactionResults" hidden>
+      <div class="results-grid">
+        <div class="result-stat"><span class="result-label">Average</span><span class="result-value" id="resAverage">—</span></div>
+        <div class="result-stat"><span class="result-label">Best</span><span class="result-value" id="resBest">—</span></div>
+        <div class="result-stat"><span class="result-label">Consistency</span><span class="result-value" id="resConsistency">—</span></div>
+      </div>
+      <button class="btn" id="reactionRetry" type="button">Try again</button>
+    </div>
+  </main>
+
+  <!-- ============== SEQUENCE MEMORY GAME ============== -->
+  <main class="panel" id="sequenceGame" hidden>
+    <button class="back-btn" id="sequenceBack" type="button">← Back</button>
+    <div class="sequence-status">
+      <span id="sequenceRoundLabel">Round 1</span>
+      <span id="sequenceStateLabel" class="sequence-state">Watch closely</span>
+    </div>
+    <div class="tile-grid" id="tileGrid"></div>
+    <div class="sequence-results" id="sequenceResults" hidden>
+      <div class="results-grid">
+        <div class="result-stat"><span class="result-label">Sequence reached</span><span class="result-value" id="seqReached">—</span></div>
+      </div>
+      <button class="btn" id="sequenceRetry" type="button">Try again</button>
+    </div>
+  </main>
+
+  <section class="about">
+    <h2>How this is measured</h2>
+    <ul class="about-list">
+      <li><strong>Reaction time</strong> is timed with <code>performance.now()</code>, not <code>Date.now()</code>, for sub-millisecond precision unaffected by system clock adjustments. A click before the color changes is scored as a false start, not a fast time.</li>
+      <li><strong>Sequence memory</strong> grows by one step every successful round. The game ends on the first wrong tile, with the longest completed sequence recorded as the result.</li>
+      <li>Personal bests are saved in this browser only, via <code>localStorage</code>. Nothing is sent anywhere.</li>
+    </ul>
+  </section>
+
+  <footer class="site-footer">
+    <p>Open source on <a href="#" id="repoLink">GitHub</a> · Plain HTML, CSS and JS, no frameworks, no backend, no network calls.</p>
+  </footer>
+
+</div>
+<script src="game-logic.js"></script>
+<script src="script.js"></script>
+</body>
+</html>
