@@ -2,7 +2,7 @@
 
 A precision reaction-time and sequence-memory tester. Plain HTML, CSS, and JavaScript, no dependencies, no backend.
 
-**[Live demo](#)**: replace with your GitHub Pages link once deployed (see below).
+**[Live demo](https://reflex-nine-ruddy.vercel.app)**: replace with your GitHub Pages link once deployed (see below).
 
 ## Why this exists
 
